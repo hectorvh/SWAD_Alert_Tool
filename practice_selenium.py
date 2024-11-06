@@ -4,28 +4,14 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import TimeoutException
 import time
-#PATH = "C:\Users\HVALDES1\PycharmProjects\bin/chromedriver.exe"
 
-
-#driver.get('https://www.swcm.ford.com/swcm/')
-
-#element = driver.find_element(By.ID, 'sb_form_q')
-#element.send_keys('WebDriver')
-#element.submit()
-from selenium import webdriver
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
-from selenium.common.exceptions import TimeoutException
-
-# Replace with your webdriver path
-
+#connection webdriver
 try:
     # Initialize the webdriver
     driver = webdriver.Edge()
 
     # Navigate to the URL (replace with your actual URL)
-    driver.get("https://www.swcm.ford.com/swcm/")
+    driver.get("https://www.swcm.ford.com/healthchart")
 
     # Explicit wait to ensure the element is present before searching
     timeout = 10  # seconds
@@ -40,6 +26,7 @@ try:
 
         print("Active Directory button found and clicked!")
 
+        time.sleep(10)
     except TimeoutException:
         print("Active Directory button not found within the timeout period.")
 
