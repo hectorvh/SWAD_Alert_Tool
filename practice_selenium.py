@@ -5,6 +5,8 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import TimeoutException
 import time
 
+import open_csv_input
+
 #connection webdriver
 try:
     # Initialize the webdriver
@@ -33,14 +35,14 @@ try:
         ecu_input = WebDriverWait(driver, 10).until(
             EC.element_to_be_clickable((By.XPATH, "//input[@type='text' and contains(@class, 'inputwidth')]"))
         )
-
         # Clear the existing text in the input field
         ecu_input.clear()
+        # Send the i,j matrix value
+        ecu_input.send_keys(open_csv_input.matrix[1][1])
+        print(open_csv_input.matrix[1][1])
 
-        # Send the text "RGTM" to the input field
-        ecu_input.send_keys("RGTM")
 
-        print("Text 'RGTM' entered successfully!")
+        print("Text on csv entered successfully!")
 
         time.sleep(10)
     except TimeoutException:
