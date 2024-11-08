@@ -32,15 +32,25 @@ try:
         )
         ECU_field = driver.find_element(By.ID, "colum-ecu-filer")  # Replace with actual ID
         ECU_field.send_keys("RGTM")"""
+        rows = len(open_csv_input.list_ecu)  # Get number of rows
+        #cols = len(open_csv_input.list_ecu)  # Get number of cols (assuming all rows have same length)
+        print(f"number of rows {rows}")
+        #for i in range(rows):
         ecu_input = WebDriverWait(driver, 10).until(
-            EC.element_to_be_clickable((By.XPATH, "//input[@type='text' and contains(@class, 'inputwidth')]"))
+            EC.element_to_be_clickable(
+                (By.XPATH, "//input[@type='text' and contains(@class, 'inputwidth')]"))
         )
-        # Clear the existing text in the input field
-        ecu_input.clear()
-        # Send the i,j matrix value
-        ecu_input.send_keys(open_csv_input.matrix[1][1])
-        print(open_csv_input.matrix[1][1])
+        for j in range(1,rows):
+            try:
+                ecu_input.clear()
+                current_ecu = open_csv_input.list_ecu[j][1]
+                print(f"matrix ECU {current_ecu}")
+                ecu_input.send_keys(current_ecu)
+                print(f"Entered: {ecu_input} at ({j}, {1})")
+                time.sleep(1)  # Add a small delay to avoid issues with fast typing. Adjust as needed.
 
+            except Exception as e:
+                print(f"Error at ({1}, {j}): {e}")  # Handle exceptions gracefully"""
 
         print("Text on csv entered successfully!")
 

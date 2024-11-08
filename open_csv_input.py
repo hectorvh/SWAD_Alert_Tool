@@ -5,13 +5,13 @@ import os
 
 def csv_to_matrix(filepath):
     """Reads a CSV file and returns it as a matrix."""
-    matrix = []
+    list_ecu = []
     try:
         with open(filepath, 'r', newline='', encoding='utf-8') as csvfile:
             reader = csv.reader(csvfile)
             for row in reader:
-                matrix.append(row)
-        return matrix
+                list_ecu.append(row)
+        return list_ecu
     except FileNotFoundError:
         print(f"Error: CSV file '{filepath}' not found.")
         return None
@@ -23,15 +23,15 @@ def csv_to_matrix(filepath):
 # Example Usage:  Construct the full file path correctly.
 filepath = os.path.join("C:\\Users\\HVALDES1\\PycharmProjects\\SWAD_01", "List.csv")  #Use os.path.join for better path handling
 
-matrix = csv_to_matrix(filepath)
+list_ecu = csv_to_matrix(filepath)
 
-rows = matrix  #Get number of rows
-cols = matrix[0] #Get number of cols (assuming all rows have same length)
+#rows = matrix  #Get number of rows
+#cols = matrix[0] #Get number of cols (assuming all rows have same length)
 
-if matrix is not None:
-    print("Table data as matrix:")
-    print(matrix[1][1])
+if list_ecu is not None:
+    print("Table ok")
+    #print(matrix[1][1])
     #for row in matrix:
     #    print(row)
-elif matrix == []:
+elif list_ecu == []:
     print("File is empty.")
